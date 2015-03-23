@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 
-void mergesort(int *tab, int tsize, int mid)
+void merge1(int *tab, int tsize, int mid)
 {
     int i=0;
     int *merged=new int[tsize];
@@ -37,14 +37,14 @@ void mergesort(int *tab, int tsize, int mid)
         tab[j]=merged[j];
 }
 
-void merge1(int *tab, int tsize)
+void mergesort(int *tab, int tsize)
 {
     if(tsize==1)
         return;
     int mid=tsize/2;
-    merge1(tab, mid);
-    merge1(tab+mid, tsize-mid);
-    mergesort(tab, tsize, mid);
+    mergesort(tab, mid);
+    mergesort(tab+mid, tsize-mid);
+    merge1(tab, tsize, mid);
 
 }
 int main()
@@ -58,7 +58,7 @@ int main()
     for(int i=0; i<n; i++)
         cin>>tab[i];
 
-    merge1(tab, n);
+    mergesort(tab, n);
 
     cout<<endl<<"this is the result of using mergesort:"<<endl<<endl;
     for(int i=0; i<n; i++)
